@@ -32,6 +32,18 @@ namespace BankApplication
     public class Customer
 
     {
+        public string Username
+        {
+            get;
+            set;
+
+        }
+        public string Password
+        {
+            get;
+            set;
+
+        }
         public int AccountNumber
         {
             get;
@@ -114,7 +126,11 @@ namespace BankApplication
             Customer c1 = new Customer()
 
             {
+
+                Username = "Sakth101",
+                Password="1233",
                 AccountNumber=101,
+                
                 name = "Shakthi",
 
                 Age = 23,
@@ -134,7 +150,9 @@ namespace BankApplication
             Customer c2 = new Customer()
 
             {
-                AccountNumber=102,
+                Username = "john121",
+                Password = "123993",
+                AccountNumber =102,
                 name = "John",
 
                 Age = 26,
@@ -154,7 +172,9 @@ namespace BankApplication
             Customer c3 = new Customer()
 
             {
-                AccountNumber=102,
+                Username = "Divya123",
+                Password = "123312",
+                AccountNumber =102,
                 name = "Divya",
 
                 Age = 27,
@@ -179,7 +199,13 @@ namespace BankApplication
 
             CustomerDetails.Add(c3);
         }
+         
 
+        //Login Details 
+        public void LoginPage()
+        {
+
+        }
         public void data()
         {
             StreamWriter sw = new StreamWriter("C:\\First.txt");
@@ -187,7 +213,7 @@ namespace BankApplication
             sw.WriteLine("||Account Number||Name || Age||AccountType|| Address || Contact Number || Balance || ");
             foreach (Customer c in CustomerDetails)
             {
-                sw.WriteLine("||{0}||{1}||{2}||{3}||{4}||{5}||{6}||", c.AccountNumber, c.name, c.Age, c.AccountType, c.Address, c.Contact, c.Balance);
+                sw.WriteLine("||{0}||{1}||{2}||{3}||{4}||{5}||{6}", c.AccountNumber, c.name, c.Age, c.AccountType, c.Address, c.Contact, c.Balance);
             }
            
             sw.Flush();
@@ -201,7 +227,7 @@ namespace BankApplication
             Console.WriteLine(new string('*', 100));
             int choice = Convert.ToInt32(Console.ReadLine());
             int accountNumber;
-            string nameOff, address, contact;
+            string nameOff, address, contact,username,pass;
             int age;
             double balance;
 
@@ -219,7 +245,10 @@ namespace BankApplication
                 contact = Console.ReadLine();
                 Console.WriteLine("Enter Your Amout You Want to Deposite");
                 balance = Convert.ToDouble(Console.ReadLine());
-
+                Console.WriteLine("Enter your UserName");
+                username = Console.ReadLine();
+                Console.WriteLine("Enter Password");
+                pass = Console.ReadLine();
 
                 switch (choice)
                 {
@@ -237,7 +266,9 @@ namespace BankApplication
                                     AccountType = "saving Account ",
                                     Address = address,
                                     Contact = contact,
-                                    Balance = balance
+                                    Balance = balance,
+                                    Username = username,
+                                    Password=pass,
 
                                 };
                                 CustomerDetails.Add(EnteredDetails);
@@ -268,7 +299,9 @@ namespace BankApplication
                                     AccountType = "Current  Account ",
                                     Address = address,
                                     Contact = contact,
-                                    Balance = balance
+                                    Balance = balance,
+                                    Username = username,
+                                    Password = pass,
 
                                 };
                                 CustomerDetails.Add(EnteredDetails1);
@@ -298,7 +331,9 @@ namespace BankApplication
                                     AccountType = "ChildCare Account ",
                                     Address = address,
                                     Contact = contact,
-                                    Balance = balance
+                                    Balance = balance,
+                                    Username = username,
+                                    Password = pass,
 
                                 };
                                 CustomerDetails.Add(EnteredDetails2);
@@ -339,8 +374,8 @@ namespace BankApplication
             {
 
                 Console.WriteLine(new string('=', 100));
-                Console.WriteLine("||Account Number||Name || Age||AccountType|| Address || Contact Number || Balance || ");
-                Console.WriteLine("||{0}||{1}||{2}||{3}||{4}||{5}||{6}||", c.AccountNumber, c.name, c.Age, c.AccountType, c.Address, c.Contact, c.Balance);
+                Console.WriteLine("||Username ||Account Number||Name || Age||AccountType|| Address || Contact Number || Balance ||PassWord ");
+                Console.WriteLine("||{0}||{1}||{2}||{3}||{4}||{5}||{6}||{7}||",c.Username, c.AccountNumber, c.name, c.Age, c.AccountType, c.Address, c.Contact, c.Balance,c.Password);
                 Console.WriteLine(new string('=', 100));
             }
         }
@@ -364,9 +399,13 @@ namespace BankApplication
         {
             Console.WriteLine("Enter Account number");
             int accNumber = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter UserName ");
+            string uname = Console.ReadLine();
+            Console.WriteLine("Enter Password");
+            string pas = Console.ReadLine();
             if (CustomerDetails.Count > 0)
             {
-                var Detail = CustomerDetails.FirstOrDefault(x => x.AccountNumber == accNumber);
+                var Detail = CustomerDetails.FirstOrDefault(x => x.AccountNumber == accNumber && x.Username==uname && x.Password==pas);
 
                 if (Detail != null)
                 {
@@ -399,9 +438,13 @@ namespace BankApplication
         {
             Console.WriteLine("Enter Account number");
             int accNumber = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter UserName ");
+            string uname1 = Console.ReadLine();
+            Console.WriteLine("Enter Password");
+            string pas1 = Console.ReadLine();
             if (CustomerDetails.Count > 0)
             { 
-                var Detail = CustomerDetails.FirstOrDefault(x => x.AccountNumber == accNumber);
+                var Detail = CustomerDetails.FirstOrDefault(x => x.AccountNumber == accNumber && x.Username == uname1 && x.Password == pas1);
 
                 if (Detail != null)
                 {
@@ -504,9 +547,13 @@ namespace BankApplication
         {
             Console.WriteLine("Enter Account number");
             int accNumber = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter UserName ");
+            string uname2 = Console.ReadLine();
+            Console.WriteLine("Enter Password");
+            string pas2 = Console.ReadLine();
             if ( CustomerDetails.Count > 0)
             {
-                var Detail = CustomerDetails.FirstOrDefault(x => x.AccountNumber == accNumber);
+                var Detail = CustomerDetails.FirstOrDefault(x => x.AccountNumber == accNumber && x.Username == uname2 && x.Password == pas2);
 
 
                 if(Detail != null)
@@ -556,6 +603,9 @@ namespace BankApplication
                 pa.CreateAccount();
                 displayDelegate ob = new displayDelegate(pa.displayDetails);
                 ob();
+                Console.WriteLine(String.Format("{0," + Console.WindowWidth / 2 + "}", "==>\t Atm Transaction <=="));
+                displayDelegate obj = new displayDelegate(pa.HomeSection);
+                obj();
 
             }
             else
