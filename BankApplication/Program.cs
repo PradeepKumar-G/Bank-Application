@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace BankApplication
 {
@@ -105,8 +106,10 @@ namespace BankApplication
     {
         //Complex List Declraration
         public static List<Customer> CustomerDetails = new List<Customer>();
-        // Method for Adding Customer Details Statically
-        public  void StaticCustomerDetails()
+
+           
+         // Method for Adding Customer Details Statically
+         public void StaticCustomerDetails()
         {
             Customer c1 = new Customer()
 
@@ -176,6 +179,21 @@ namespace BankApplication
 
             CustomerDetails.Add(c3);
         }
+
+        public void data()
+        {
+            StreamWriter sw = new StreamWriter("C:\\First.txt");
+            Console.WriteLine("enter the data you want to write in file");
+            sw.WriteLine("||Account Number||Name || Age||AccountType|| Address || Contact Number || Balance || ");
+            foreach (Customer c in CustomerDetails)
+            {
+                sw.WriteLine("||{0}||{1}||{2}||{3}||{4}||{5}||{6}||", c.AccountNumber, c.name, c.Age, c.AccountType, c.Address, c.Contact, c.Balance);
+            }
+           
+            sw.Flush();
+            sw.Close();
+        }
+
         //Methos for Creating Account
         public void CreateAccount()
         {
@@ -316,6 +334,7 @@ namespace BankApplication
         {
             
             Console.WriteLine(String.Format("{0," + Console.WindowWidth / 2 + "}", " ****Available Account Details****"));
+            data();
             foreach (Customer c in CustomerDetails)
             {
 
