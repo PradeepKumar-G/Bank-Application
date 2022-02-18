@@ -9,7 +9,8 @@ namespace BankApplication
 {
     /// <summary>
     ///  NAME :Pradeep Kumar Gali
-    ///  Assignment: Creating a Bank Application using multilevel inheritence..............!
+    ///  Company:Bosch 
+    ///  Assignment: Creating a Bank Application Using all Concepts in c#................!
     /// </summary>
 
     //Multocast Delegation ......!
